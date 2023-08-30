@@ -1,3 +1,4 @@
+import { createSelectors } from '@/utils/createSelectors'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
@@ -11,7 +12,7 @@ type Store = {
   summary: () => string
 }
 
-export const useCatStore = create<Store>()(
+const useCatStoreBase = create<Store>()(
   immer((set, get) => ({
     cats: {
       bigCats: 0,
@@ -33,3 +34,5 @@ export const useCatStore = create<Store>()(
     },
   }))
 )
+
+export const useCatStore = createSelectors(useCatStoreBase)

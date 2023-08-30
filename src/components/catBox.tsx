@@ -15,6 +15,7 @@ function CatBox() {
       <p>big cats: {bigCats}</p>
       <p>small cats: {smallCats}</p>
       <p>summary: {summary()}</p>
+      <p>{Math.random()}</p>
       <div className="flex gap-2">
         <button onClick={increaseBigCats}>add big cats</button>
         <button onClick={increaseSmallCats}>add small cats</button>
