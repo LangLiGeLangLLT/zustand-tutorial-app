@@ -11,4 +11,13 @@
 }
 
 body {
+  @apply select-none;
+}
+
+button {
+  @apply bg-blue-500 text-white p-2 rounded-lg hover:opacity-80 active:opacity-90 transition;
+}
+
+h1 {
+  @apply font-bold text-lg;
 }
