@@ -8,7 +8,7 @@ function BearBox() {
   const removeAllBears = useBearStore((state) => state.removeAllBears)
 
   return (
-    <div className="border p-4 rounded-lg">
+    <div className="box">
       <h1>Bear Box</h1>
       <p>bears: {bears}</p>
       <div className="flex gap-2">

@@ -21,3 +21,7 @@ button {
 h1 {
   @apply font-bold text-lg;
 }
+
+.box {
+  @apply border p-4 rounded-lg flex flex-col gap-2;
+}
