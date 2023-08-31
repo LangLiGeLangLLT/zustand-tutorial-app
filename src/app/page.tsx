@@ -1,8 +1,10 @@
 'use client'
 
-import BearBox from '@/components/bearBox'
 import dynamic from 'next/dynamic'
 
+const BearBox = dynamic(() => import('@/components/bearBox'), {
+  ssr: false,
+})
 const CatBox = dynamic(() => import('@/components/catBox'), { ssr: false })
 const CatBox2 = dynamic(() => import('@/components/catBox2'), { ssr: false })
 const CatController = dynamic(() => import('@/components/catController'), {

@@ -6,6 +6,7 @@ function BearBox() {
   const bears = useBearStore((state) => state.bears)
   const increasePopulation = useBearStore((state) => state.increasePopulation)
   const removeAllBears = useBearStore((state) => state.removeAllBears)
+  const reset = useBearStore((state) => state.reset)
 
   return (
     <div className="box">
@@ -14,6 +15,14 @@ function BearBox() {
       <div className="flex gap-2">
         <button onClick={increasePopulation}>add bear</button>
         <button onClick={removeAllBears}>remove bear</button>
+        <button
+          onClick={() => {
+            reset()
+            useBearStore.persist.clearStorage()
+          }}
+        >
+          clear storage
+        </button>
       </div>
     </div>
   )
