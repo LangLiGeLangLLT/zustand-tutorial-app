@@ -1,9 +1,22 @@
 import { useCatStore } from '@/store/catStore'
-import React from 'react'
+// import { shallow } from 'zustand/shallow'
 
 function CatController() {
   const increaseBigCats = useCatStore.use.increaseBigCats()
   const increaseSmallCats = useCatStore.use.increaseSmallCats()
+
+  // const { increaseBigCats, increaseSmallCats } = useCatStore(
+  //   (state) => ({
+  //     increaseBigCats: state.increaseBigCats,
+  //     increaseSmallCats: state.increaseSmallCats,
+  //   }),
+  //   shallow
+  // )
+
+  // const [increaseBigCats, increaseSmallCats] = useCatStore(
+  //   (state) => [state.increaseBigCats, state.increaseSmallCats],
+  //   shallow
+  // )
 
   return (
     <div className="box">
