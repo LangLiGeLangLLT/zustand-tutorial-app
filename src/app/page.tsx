@@ -1,6 +1,5 @@
 'use client'
 
-import FoodBox from '@/components/foodBox'
 import dynamic from 'next/dynamic'
 
 const BearBox = dynamic(() => import('@/components/bearBox'), {
@@ -11,6 +10,7 @@ const CatBox2 = dynamic(() => import('@/components/catBox2'), { ssr: false })
 const CatController = dynamic(() => import('@/components/catController'), {
   ssr: false,
 })
+const FoodBox = dynamic(() => import('@/components/foodBox'), { ssr: false })
 
 export default function Home() {
   return (

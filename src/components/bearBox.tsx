@@ -12,7 +12,9 @@ function BearBox() {
   const removeAllBears = useBearStore((state) => state.removeAllBears)
   const reset = useBearStore((state) => state.reset)
 
-  const [bgClass, setBgClass] = useState<string>('')
+  const [bgClass, setBgClass] = useState<string>(
+    useFoodStore.getState().fish > 5 ? 'bg-red-100' : 'bg-green-100'
+  )
 
   useEffect(() => {
     // const unsubscribe = useFoodStore.subscribe((state, prevState) => {
@@ -30,13 +32,13 @@ function BearBox() {
     const unsubscribe = useFoodStore.subscribe(
       (state) => state.fish,
       (fish, prevFish) => {
-        if (prevFish === fish) {
-          if (fish > 5) {
-            setBgClass('bg-red-100')
-          } else {
-            setBgClass('bg-green-100')
-          }
-        }
+        // if (prevFish === fish) {
+        //   if (fish > 5) {
+        //     setBgClass('bg-red-100')
+        //   } else {
+        //     setBgClass('bg-green-100')
+        //   }
+        // }
 
         if (prevFish <= 5 && fish > 5) {
           setBgClass('bg-red-100')
