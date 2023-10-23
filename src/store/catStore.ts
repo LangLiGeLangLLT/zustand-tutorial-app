@@ -1,5 +1,5 @@
 import { createSelectors } from '@/utils/createSelectors'
-import { create } from 'zustand'
+import { StateCreator, create } from 'zustand'
 import { devtools, persist, subscribeWithSelector } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
@@ -13,35 +13,42 @@ type Store = {
   summary: () => string
 }
 
+const createCatSlice: StateCreator<
+  Store,
+  [
+    ['zustand/immer', never],
+    ['zustand/devtools', unknown],
+    ['zustand/subscribeWithSelector', never],
+    ['zustand/persist', unknown]
+  ]
+> = (set, get) => ({
+  cats: {
+    bigCats: 0,
+    smallCats: 0,
+  },
+  increaseBigCats: () => {
+    set((state) => {
+      state.cats.bigCats += 1
+    })
+  },
+  increaseSmallCats: () => {
+    set((state) => {
+      state.cats.smallCats += 1
+    })
+  },
+  summary: () => {
+    const total = get().cats.bigCats + get().cats.smallCats
+    return `There are ${total} cats in total.`
+  },
+})
+
 const useCatStoreBase = create<Store>()(
   immer(
     devtools(
       subscribeWithSelector(
-        persist(
-          (set, get) => ({
-            cats: {
-              bigCats: 0,
-              smallCats: 0,
-            },
-            increaseBigCats: () => {
-              set((state) => {
-                state.cats.bigCats += 1
-              })
-            },
-            increaseSmallCats: () => {
-              set((state) => {
-                state.cats.smallCats += 1
-              })
-            },
-            summary: () => {
-              const total = get().cats.bigCats + get().cats.smallCats
-              return `There are ${total} cats in total.`
-            },
-          }),
-          {
-            name: 'cat store',
-          }
-        )
+        persist(createCatSlice, {
+          name: 'cat store',
+        })
       ),
       {
         enabled: true,
